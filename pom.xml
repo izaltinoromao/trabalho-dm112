@@ -19,6 +19,7 @@
     <modules>
         <module>PedidoDM112</module>
         <module>UtilityDM112</module>
+        <module>EntregaDM112</module>
     </modules>
 
     <build>
