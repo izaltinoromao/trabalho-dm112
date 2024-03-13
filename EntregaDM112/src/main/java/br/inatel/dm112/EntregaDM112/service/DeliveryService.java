@@ -6,7 +6,6 @@ import br.inatel.dm112.EntregaDM112.controller.dto.DeliveryDto;
 import br.inatel.dm112.EntregaDM112.exception.OrderAlreadyDeliveredException;
 import br.inatel.dm112.EntregaDM112.exception.OrderNotFoundException;
 import br.inatel.dm112.EntregaDM112.model.Order;
-import br.inatel.dm112.EntregaDM112.repository.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,15 +14,12 @@ import java.time.LocalDateTime;
 @Service
 public class DeliveryService {
 
-    private DeliveryRepository deliveryRepository;
-
     private OrderAdapter orderAdapter;
 
     private EmailAdapter emailAdapter;
 
     @Autowired
-    public DeliveryService(DeliveryRepository deliveryRepository, OrderAdapter orderAdapter, EmailAdapter emailAdapter) {
-        this.deliveryRepository = deliveryRepository;
+    public DeliveryService(OrderAdapter orderAdapter, EmailAdapter emailAdapter) {
         this.orderAdapter = orderAdapter;
         this.emailAdapter = emailAdapter;
     }

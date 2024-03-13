@@ -82,7 +82,8 @@ public abstract class MailAdapter {
 
             message.setContent(multipart);
 
-            Transport.send(message);
+            // Comentado porque nao tenho e-mail para testar o envio
+            //Transport.send(message);
             System.out.println("Email sent successfully....");
         } catch (MessagingException e) {
             e.printStackTrace();
