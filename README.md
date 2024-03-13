@@ -61,5 +61,5 @@ To read the existing order list:
 To create a delivery receipt:
 `POST  http://localhost:8081/EntregaDM112/api/make-delivery?orderNumber=2&receiverCpf=111.111.111-11`
 
-It is necessary to use a valid Pokémon in the URL;
+
 
