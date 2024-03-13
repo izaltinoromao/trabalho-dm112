@@ -55,9 +55,6 @@ $ mvn clean install
 
 ## Endpoints of Request
 
-To confirm a delivery and send the email:
-`PUT  http://localhost:9090/PedidoDM112/api/orders/1/delivery-confirmation`
-
 To read the existing order list:
 `GET  http://localhost:9090/PedidoDM112/api/orders`
 
