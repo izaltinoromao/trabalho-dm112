@@ -5,13 +5,12 @@ import br.inatel.dm112.EntregaDM112.adapter.OrderAdapter;
 import br.inatel.dm112.EntregaDM112.controller.dto.DeliveryDto;
 import br.inatel.dm112.EntregaDM112.exception.OrderAlreadyDeliveredException;
 import br.inatel.dm112.EntregaDM112.exception.OrderNotFoundException;
-import br.inatel.dm112.EntregaDM112.model.Delivery;
 import br.inatel.dm112.EntregaDM112.model.Order;
 import br.inatel.dm112.EntregaDM112.repository.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class DeliveryService {
@@ -39,12 +38,12 @@ public class DeliveryService {
         orderAdapter.makeOrderDelivery(order.getNumber()); // (2) atualiza o status do pedido
 
         DeliveryDto deliveryDto = DeliveryDto.builder()
-                .deliveredDate(LocalDate.now())
+                .deliveredDate(LocalDateTime.now())
                 .orderNumber(order.getNumber())
                 .receiverCpf(receiverCpf)
                 .build();
 
-        emailAdapter.callSendMailService(deliveryDto); // (4) envia email com o pdf
+        emailAdapter.callSendMailService(deliveryDto);
 
         System.out.println("Success on delivery: orderNumber: " + orderNumber);
         return deliveryDto; // (5) retorna sucesso

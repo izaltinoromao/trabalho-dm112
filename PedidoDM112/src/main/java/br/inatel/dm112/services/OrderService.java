@@ -106,4 +106,13 @@ public class OrderService {
 		return entity;
 	}
 
+	public void makeDelivery(Integer orderNumber) {
+		OrderEntity entity = getOrder(orderNumber);
+		if(entity.getDeliveryStatus() == Order.DELIVERYSTATUS.DELIVERED.ordinal()) {
+			throw new InvalidOrderOperationException("Order already delivered. Status: " + entity.getDeliveryStatus());
+		}
+		entity.setDeliveryStatus(Order.DELIVERYSTATUS.DELIVERED.ordinal());
+		repo.save(entity);
+		System.out.println("OrderImpl confirm Delivery - delivery confirmed with number: " + orderNumber);
+	}
 }

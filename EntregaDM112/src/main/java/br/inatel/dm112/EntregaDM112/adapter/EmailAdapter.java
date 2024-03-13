@@ -1,7 +1,7 @@
 package br.inatel.dm112.EntregaDM112.adapter;
 
 import br.inatel.dm112.EntregaDM112.controller.dto.DeliveryDto;
-import br.inatel.dm112.EntregaDM112.model.MailRequestData;
+import br.inatel.dm112.EntregaDM112.model.MailRequestDeliveryData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -24,21 +24,21 @@ public class EmailAdapter {
     @Value("${email.password}")
     private String sendPassAddress;
 
-    private String mailEndpoint = "/mail";
+    private String mailEndpoint = "/delivery-mail";
 
     public void callSendMailService(DeliveryDto deliveryDto) {
 
-        String url = restURL + mailEndpoint ;
+        String url = restURL + mailEndpoint;
         System.out.println("URL: " + url);
 
-        MailRequestData mrd = new MailRequestData(orderNumber, sendFromAddress, sendPassAddress, sendToAddress, content);
+        MailRequestDeliveryData mrd = new MailRequestDeliveryData(sendFromAddress, sendPassAddress, sendToAddress, deliveryDto);
 
         WebClient
                 .create(url)
                 .post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-                .body(Mono.just(mrd), MailRequestData.class)
+                .body(Mono.just(mrd), MailRequestDeliveryData.class)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(String.class).defaultIfEmpty("")

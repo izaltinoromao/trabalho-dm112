@@ -49,7 +49,7 @@ public class OrderAdapter {
             HttpResponse<String> response = HttpClient.newBuilder()
                     .build()
                     .send(request, HttpResponse.BodyHandlers.ofString());
-            if(response.statusCode() != HttpStatus.NO_CONTENT.ordinal()) {
+            if(response.statusCode() != HttpStatus.OK.value()) {
                 throw new RuntimeException("Error updating Order Payment. statusCode" + response.statusCode());
             }
         } catch (Exception e) {

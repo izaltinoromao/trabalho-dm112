@@ -51,6 +51,14 @@ public class OrderRest implements OrderInterface {
 		System.out.println("OrderRest - startOrderPayment " + orderNumber);
 		service.startPayment(orderNumber);
 	}
+@Override
+	@PutMapping("/orders/{orderNumber}/delivery-confirmation")
+	@ResponseStatus(HttpStatus.OK)
+	public void makeOrderDelivery(@PathVariable("orderNumber") Integer orderNumber) {
+
+		System.out.println("OrderRest - makeOrderDelivery " + orderNumber);
+		service.makeDelivery(orderNumber);
+	}
 
 	@Override
 	@PutMapping("/orders/{orderNumber}/confirmation")

@@ -1,5 +1,6 @@
 package br.inatel.dm112.EntregaDM112.model;
 
+import br.inatel.dm112.EntregaDM112.controller.dto.DeliveryDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,13 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MailRequestData {
+public class MailRequestDeliveryData {
 
-    private int orderNumber;
     private String from;
     private String password;
     private String to;
-    private byte[] content;
+    private DeliveryDto deliveryDto;
 
     @Override
     public String toString() {
