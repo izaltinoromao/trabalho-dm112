@@ -10,6 +10,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
+import java.io.IOException;
 import java.util.Properties;
 
 public abstract class MailAdapter {
@@ -82,10 +83,17 @@ public abstract class MailAdapter {
 
             message.setContent(multipart);
 
-            Transport.send(message);
+            // Comentado porque nao tenho e-mail para testar o envio
+            //Transport.send(message);
+            System.out.println("----------------------------------------------------");
+            System.out.println("Assunto: " + message.getSubject());
+            System.out.println("Corpo do e-mail: " + messageBodyPartText.getDataHandler().getContent());
+            System.out.println("----------------------------------------------------");
             System.out.println("Email sent successfully....");
         } catch (MessagingException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
